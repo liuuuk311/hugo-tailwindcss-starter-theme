@@ -9,12 +9,11 @@ Starter files for a Hugo theme with Tailwind CSS.
   - [Aspect Ratio](https://github.com/tailwindlabs/tailwindcss-aspect-ratio) to give elements a fixed aspect ratio
   - [Line Clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp) for truncating text
 - use [Hugo Pipes](https://gohugo.io/hugo-pipes/) to build and load css based on `dev` or `build` environment
-- ~purge unused css classes with [PurgeCSS](https://www.purgecss.com) for `build`, but __not__ in `dev`~
 - no need to purge via PurgeCSS anymore, as the TailwindCSS JIT compiler only builds the necessary CSS classes
 - works as separate theme repo or as a local theme folder within a Hugo site
 - basic template setup with an index page, an about page and a posts category
 - responsive navigation header to hide the nav on small screens
-- to keep that s***er down, the theme features a sticky footer
+- to keep that s\*\*\*er down, the theme features a sticky footer
 - color theme switcher for `light`, `dark` or `system` preferred color scheme
 - included development helper partials to show Hugo parameters and Tailwind CSS breakpoints during development
 
@@ -22,7 +21,7 @@ _Live long and code._
 
 ## What this theme is NOT
 
-This theme is a starter setup theme to aid in developing Hugo themes using the Tailwind CSS framework. It is ***not*** a standalone theme ready to use.
+This theme is a starter setup theme to aid in developing Hugo themes using the Tailwind CSS framework. It is **_not_** a standalone theme ready to use.
 
 ## Prerequisites
 
@@ -70,7 +69,7 @@ theme = "new-theme-name" # your new theme name here
 hugo server -s exampleSite --themesDir=../.. --disableFastRender
 ```
 
-## Usage directly within a Hugo repo as a theme package
+## How to use as a theme
 
 - start a new Hugo site
 
