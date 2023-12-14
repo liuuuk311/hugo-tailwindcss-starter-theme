@@ -1,0 +1,52 @@
+{{ $src := resources.Get .url }}
+
+{{/* set image sizes, these are hardcoded for now, x dictates that images are resized to this width */}}
+
+{{ $origHeight := $src.Height }}
+{{ $origWidth := $src.Width }}
+
+{{ $tinyw := default "500x webp" }}
+{{ $smallw := default "883x webp" }}
+{{ $mediumw := default "1200x webp" }}
+{{ $largew := default "1500x webp" }}
+
+{{/* resize the src image to the given sizes */}}
+
+{{ $tiny := $src.Resize $tinyw }}
+{{ $small := $src.Resize $smallw }}
+{{ $medium := $src.Resize $mediumw }}
+{{ $large := $src.Resize $largew }}
+
+{{/* add the processed images to the scratch */}}
+
+{{ $tiny = $tiny.RelPermalink }}
+{{ $small = $small.RelPermalink }}
+{{ $medium = $medium.RelPermalink }}
+{{ $large = $large.RelPermalink }}
+
+{{/* only use images smaller than or equal to the src (original) image size, as Hugo will upscale small images */}}
+{{/* set the sizes attribute to (min-width: 35em) 1200px, 100vw unless overridden */}}
+
+
+<img
+  sizes="(min-width: 35em) 845px, 100vw"
+  srcset="
+  {{ if ge $src.Width "500" }}
+    {{ with $tiny }}{{ . }} 500w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "845" }}
+    {{ with $small }}, {{ . }} 845w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1200" }}
+    {{ with $medium }}, {{ . }} 1200w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1500" }}
+    {{ with $large }}, {{ . }} 1500w{{ end }}
+  {{ end }}"
+  src="{{ $src.RelPermalink }}"
+  alt="{{ .alt }}"
+  loading="{{ .loading }}"
+  width="{{ $origWidth }}"
+  height="{{ $origHeight }}"
+  class="{{ .classes }}"
+/>

@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang='{{ .Site.LanguageCode }}'>
-{{ partial "head.html" . }}
+<!doctype html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+  {{ partial "common/head.html" . }}
 
-<body class="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+
+  <body
+    class="flex min-h-screen flex-col bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
+  >
     {{- partial "dev/dev-tools.html" . -}}
-    {{- partial "header.html" . -}}
-    <main class="flex-1 grow mx-auto w-screen max-w-screen-2xl px-6 sm:px-7 xl:px-8 2xl:px-10 pt-4 sm:pt-16">
-        {{- block "main" . }}{{- end }}
+    {{- partial "common/header.html" . -}}
+    <main
+      class="mx-auto w-screen max-w-screen-2xl flex-1 grow px-6 pt-4 sm:px-7 sm:pt-16 xl:px-8 2xl:px-10"
+    >
+      {{- block "main" . }}{{- end }}
     </main>
-    {{- partial "footer.html" . -}}
-</body>
-
+    {{- partial "common/footer.html" . -}}
+    {{- partial "common/scripts.html" . -}}
+    {{- block "scripts" . }}{{- end }}
+  </body>
 </html>

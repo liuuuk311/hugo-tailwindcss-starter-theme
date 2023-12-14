@@ -1,37 +1,42 @@
 {{ if .Site.IsServer }}
-<button id="container-menu" onclick="changeContainerVisibility()"
-    class="w-8 h-8 mb-2 block rounded-full text-slate-600 text-sm bg-slate-200 uppercase pointer-events-auto">
+  <button
+    id="container-menu"
+    onclick="changeContainerVisibility()"
+    class="pointer-events-auto mb-2 block h-12 w-12 rounded-full bg-slate-200 text-sm uppercase text-slate-600"
+  >
     <span>C</span>
-</button>
+  </button>
 
-<div id="container-area"
-    class="fixed inset-0 top-0 -z-50 container mx-auto h-full bg-red-200 bg-opacity-25 pointer-events-none hidden">
+  <div
+    id="container-area"
+    class="container pointer-events-none fixed inset-0 top-0 -z-50 mx-auto hidden h-full bg-red-200 bg-opacity-25"
+  >
     <p></p>
-</div>
+  </div>
 
-<script>
+  <script>
     function setContainerVisibility(data) {
-        var showContainer = data;
-        var e = document.querySelector("#container-area");
-        if (e.classList.contains("hidden") == showContainer) {
-            e.classList.toggle("hidden");
-        }
-        sessionStorage.setItem("showContainer", showContainer);
+      var showContainer = data;
+      var e = document.querySelector("#container-area");
+      if (e.classList.contains("hidden") == showContainer) {
+        e.classList.toggle("hidden");
+      }
+      sessionStorage.setItem("showContainer", showContainer);
     }
 
     function changeContainerVisibility() {
-        var e = document.querySelector("#container-area");
-        var showContainer = e.classList.contains("hidden") ? true : false;
-        setContainerVisibility(showContainer);
+      var e = document.querySelector("#container-area");
+      var showContainer = e.classList.contains("hidden") ? true : false;
+      setContainerVisibility(showContainer);
     }
 
     function setupContainerIndicator() {
-        /* load variables from session storage */
-        var showContainer = sessionStorage.getItem("showContainer") === "true";
+      /* load variables from session storage */
+      var showContainer = sessionStorage.getItem("showContainer") === "true";
 
-        setContainerVisibility(showContainer);
+      setContainerVisibility(showContainer);
     }
 
     window.onload = setupContainerIndicator();
-</script>
+  </script>
 {{ end }}

@@ -5,11 +5,8 @@
 @tailwind utilities;
 @tailwind variants;
 
-/* Site Specific */
-/* put site specific css styles here using the @layer directive */
-/* see https://tailwindcss.com/docs/functions-and-directives#layer */
-@layer components {
-    .welcome-headline {
-        @apply text-sky-600;
-    }
+@layer utilities {
+  .toggle-btn {
+    @apply [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 [&>div::before]:translate-y-0 [&>div::before]:rotate-45 [&>div]:rotate-[720deg] [&>div]:bg-transparent;
+  }
 }

@@ -1,0 +1,28 @@
+{{- $styles := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/postcss.config.js") -}}
+{{- if .Site.IsServer }}
+  {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) . }}
+{{ else }}
+  {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ end -}} <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+<style type="text/tailwindcss">
+  @layer utilities {
+    .hamburger-toggle {
+      @apply [&>div::before]:before:translate-y-0 [&>div::before]:before:rotate-2 [&>div::before]:after:translate-y-0 [&>div::before]:after:-rotate-2 [&>div]:h-0 [&>div]:bg-white;
+    }
+  }
+</style>
+<style>
+  @keyframes open-menu {
+    0% {
+      transform: scaleY(0);
+    }
+
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate-open-menu {
+    animation: open-menu 0.3s ease-in-out forwards;
+  }
+</style>

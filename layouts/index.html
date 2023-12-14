@@ -1,6 +1,9 @@
 {{ define "main" }}
-<article class="justify-self-center mx-auto text-center prose dark:prose-invert prose-slate lg:prose-lg">
-    <h1 class="font-serif font-extralight text-5xl welcome-headline">{{ .Title }}</h1>
-    {{ .Content }}
-</article>
+  <article class="">
+    <h1 class="my-4 text-5xl font-black">{{ .Title }}</h1>
+    <h2 class="my-4 text-3xl font-bold">Heading H2</h2>
+    <h3 class="my-4 text-2xl font-semibold">Heading H3</h3>
+    <h4 class="my-4 text-xl">Heading H4</h4>
+    <p>{{ .Content }}</p>
+  </article>
 {{ end }}
